@@ -12,7 +12,23 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="./static/Imagens/logo.png">
-
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '2033227177528343');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=2033227177528343&ev=PageView&noscript=1" /></noscript>
     <style>
         /* Estilos rápidos para a grade de posts */
         .blog-grid {
@@ -301,7 +317,7 @@
             }).join('<br>');
 
             modalBody.innerHTML = `
-            <img src="${post.imageUrl || './static/Imagens/Blog.jpg'}">
+            <img src="${post.imageUrl || './static/Imagens/gray.jpg'}">
             <h2>${post.title}</h2>
             <small>Publicado em: ${new Date(post.publishedAt).toLocaleDateString('pt-BR')}</small>
             <hr style="margin: 20px 0; opacity: 0.2;">
@@ -326,15 +342,15 @@
         fetchPosts();
     </script>
 
-            <script>
-            window._digisac = {
-                id: "5bb09685-c8ce-4cce-b59f-14b623806a70",
-                payload: {
-                    startOpen: true,
-                }
+    <script>
+        window._digisac = {
+            id: "5bb09685-c8ce-4cce-b59f-14b623806a70",
+            payload: {
+                startOpen: true,
             }
-        </script>
-        <script src="https://webchat.digisac.app/embedded.js"></script>
+        }
+    </script>
+    <script src="https://webchat.digisac.app/embedded.js"></script>
 
 
     <script src="./static/script.js"></script>
