@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta name="viewport" content="with=device-width, initial-scale=1.0">
+
+    <meta charset="UTF-8">
+    <title>LPA – Advocacia Empresarial</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!--Swipper.js Biblioteca para carrousseis-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!--Swipper.js Biblioteca para carrousseis-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="../static/Imagens/logo.png">
+
+</head>
+
+<body>
+
+    <section class="Sub-header">
+
+
+        <nav>
+
+            <a href="./index.html" class="logo-container">
+                <img src="../static/Imagens/logo.png" class="logo-site logo-simbolo" alt="LPA Símbolo">
+                <img src="../static/Imagens/logoLPA.png" class="logo-site logo-completa" alt="LPA Principal">
+            </a>
+
+            <div class="nav-links" id="navLinks">
+                <i class="fas fa-times-circle" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./About.html">Quem Somos</a></li>
+                    <li><a href="./Servicos.html">Serviços</a></li>
+                    <li><a href="./Blog.html">Blog</a></li>
+                    <li><a href="./Contactus.html">Contato</a></li>
+                    <li><a href="./Vagas.html">Vagas</a></li>
+                </ul>
+            </div>
+
+            <i class="fas fa-bars" onclick="showMenu()"></i>
+
+            <div class="header-icons">
+                <a href="mailto:contato@lpaadv.com" title="Enviar E-mail">
+                    <i class="fas fa-envelope"></i>
+                </a>
+
+                <a href="https://www.instagram.com/lpaadv" target="_blank" rel="noopener noreferrer" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+                <a href="https://www.linkedin.com/in/seuusuario" target="_blank" rel="noopener noreferrer"
+                    title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+
+        </nav>
+
+        <h1 class="revelar">Entre em Contato</h1>
+    </section>
+
+    <section class="contato-bg">
+
+        <div class="contato-wrapper revelar">
+
+            <div class="contato-mapa-card ">
+
+                <!-- MAPA -->
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3751.074660347532!2d-43.959044999999996!3d-19.9212584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa69741983178af%3A0x89bbbfd2cdc655c7!2sR.%20Jaceguai%2C%20208%20-%2012%C2%B0%20Andar%20-%201204%20-%20Prado%2C%20Belo%20Horizonte%20-%20MG%2C%2030411-040!5e0!3m2!1sen!2sbr!4v1766085571270!5m2!1sen!2sbr"
+                    allowfullscreen="" loading="lazy">
+                </iframe>
+
+                <!-- CARD SOBREPOSTO -->
+                <div class="contato-card">
+                    <i class="fas fa-home"></i>
+                    <h3>Nosso Escritório</h3>
+                    <p>
+                        Rua Jaceguai, 208<br>
+                        12° andar, sala 1204<br>
+                        Bairro Prado – BH | MG
+                    </p>
+
+                    <span>(31) 3657-5600</span>
+                    <span>(31) 98338-7753</span>
+                    <span>contato@lpaadv.com</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- FORMULÁRIO -->
+
+
+        <section class="contato-section revelar">
+
+            <div class="contato-wrapper">
+
+                <div class="contato-text">
+                    <span class="contato-tag">CONTATO</span>
+                    <h2>Vamos Conversar<br>Sobre Seu Negócio</h2>
+                    <p>
+                        Da estratégia à execução, estamos prontos para entender sua necessidade
+                        e oferecer soluções jurídicas eficazes e personalizadas.
+                    </p>
+                </div>
+
+                <div class="contato-form">
+                    <form action="https://api.web3forms.com/submit" method="POST">
+
+                        <input type="hidden" name="access_key" value="d315b0be-d309-42b2-a860-bf933bfb7f2e">
+
+                        <input type="hidden" name="subject" value="Novo Contato via Site - LPA">
+                        <input type="hidden" name="from_name" value="Site LPA Advocacia">
+
+                        <label>Nome</label>
+                        <input type="text" name="name" placeholder="Seu nome" required>
+
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="Seu email" required>
+
+                        <label>Mensagem</label>
+                        <textarea name="message" rows="6" placeholder="Sua mensagem" required></textarea>
+
+                        <button type="submit">Enviar mensagem</button>
+                    </form>
+                </div>
+
+                <script src="https://web3forms.com/client/script.js" async defer></script>
+
+            </div>
+
+        </section>
+
+    </section>
+
+
+    <footer class="footer-lpa">
+        <div class="footer-container">
+
+            <div class="footer-col branding">
+                <img src="/static/Imagens/logoLPA.png" class="footer-logo" alt="LPA Advocacia">
+                <div class="footer-icons">
+                    <a href="mailto:contato@lpaadv.com" title="E-mail"><i class="fas fa-envelope"></i></a>
+                    <a href="https://instagram.com" target="_blank" title="Instagram"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col links">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./About.html">Quem Somos</a></li>
+                    <li><a href="./Servicos.html">Serviços</a></li>
+                    <li><a href="./Blog.html">Blog</a></li>
+                    <li><a href="./Contactus.html">Contato</a></li>
+                    <li><a href="./Vagas.html">Vagas</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col contact-info">
+                <h4>Onde Estamos</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Rua Jaceguai, 208, 12º andar, 1204<br>Bairro Prado, BH | MG</p>
+                <p><i class="fas fa-phone-alt"></i> (31) 3657-5600</p>
+                <p><i class="fab fa-whatsapp"></i> (31) 98338-7753</p>
+                <p><i class="fas fa-envelope-open-text"></i> contato@lpaadv.com</p>
+            </div>
+
+            <div class="footer-col tagline">
+                <p class="footer-slogan">Potencializamos<br>suas decisões</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 LPA - Advocacia de Negócios. Todos os direitos reservados.</p>
+            <p class="dev-signature">
+                <i class="fas fa-code"></i> Powered by
+                <a href="https://github.com/CapGattsu" target="_blank" class="dev-link">João Scarmato</a> &
+                <a href="https://github.com/GLKaiky" target="_blank" class="dev-link">Kaiky França</a>
+            </p>
+        </div>
+    </footer>
+    <script>
+        window._digisac = {
+            id: "5bb09685-c8ce-4cce-b59f-14b623806a70",
+            payload: {
+                startOpen: true,
+            }
+        }
+    </script>
+    <script src="https://webchat.digisac.app/embedded.js"></script>
+
+
+    <script src="../static/script.js"></script>
+</body>
+
+</html>
