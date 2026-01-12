@@ -6,12 +6,12 @@
     <meta charset="UTF-8">
     <title>Blog | LPA – Advocacia Empresarial</title>
 
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="./static/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="../static/Imagens/logo.png">
+    <link rel="icon" type="image/x-icon" href="./static/Imagens/logo.png">
 
     <style>
         /* Estilos rápidos para a grade de posts */
@@ -126,8 +126,8 @@
         <nav>
 
             <a href="./index.html" class="logo-container">
-                <img src="../static/Imagens/logo.png" class="logo-site logo-simbolo" alt="LPA Símbolo">
-                <img src="../static/Imagens/logoLPA.png" class="logo-site logo-completa" alt="LPA Principal">
+                <img src="./static/Imagens/logo.png" class="logo-site logo-simbolo" alt="LPA Símbolo">
+                <img src="./static/Imagens/logoLPA.png" class="logo-site logo-completa" alt="LPA Principal">
             </a>
 
             <div class="nav-links" id="navLinks">
@@ -187,7 +187,7 @@
         <div class="footer-container">
 
             <div class="footer-col branding">
-                <img src="/static/Imagens/logoLPA.png" class="footer-logo" alt="LPA Advocacia">
+                <img src="./static/Imagens/logoLPA.png" class="footer-logo" alt="LPA Advocacia">
                 <div class="footer-icons">
                     <a href="mailto:contato@lpaadv.com" title="E-mail"><i class="fas fa-envelope"></i></a>
                     <a href="https://instagram.com" target="_blank" title="Instagram"><i
@@ -273,7 +273,7 @@
 
                 return `
                 <div class="blog-card" onclick="openPost('${post._id}')">
-                    <img src="${post.imageUrl || '/static/Imagens/gray.jpg'}" alt="${post.title}">
+                    <img src="${post.imageUrl || './static/Imagens/gray.jpg'}" alt="${post.title}">
                     <div class="blog-card-text">
                         <h3>${post.title}</h3>
                         <p>${resumo}</p>
@@ -301,7 +301,7 @@
             }).join('<br>');
 
             modalBody.innerHTML = `
-            <img src="${post.imageUrl || '/static/Imagens/Blog.jpg'}">
+            <img src="${post.imageUrl || './static/Imagens/Blog.jpg'}">
             <h2>${post.title}</h2>
             <small>Publicado em: ${new Date(post.publishedAt).toLocaleDateString('pt-BR')}</small>
             <hr style="margin: 20px 0; opacity: 0.2;">
@@ -337,7 +337,7 @@
         <script src="https://webchat.digisac.app/embedded.js"></script>
 
 
-    <script src="../static/script.js"></script>
+    <script src="./static/script.js"></script>
     <script>
         // Mantenha as funções de interface fora do módulo para evitar conflitos de escopo
         function showMenu() { document.getElementById("navLinks").style.right = "0"; }
