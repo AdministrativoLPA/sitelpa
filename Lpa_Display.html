@@ -41,26 +41,35 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html, body {
-    margin: 0;
-    padding: 0;
-    width: 100vh; height: 100vw;
+  html {
+    width: 100vw; height: 100vh;
     overflow: hidden;
     background: var(--preto-deep);
-    font-family: 'Comme', 'Helvetica Neue', Arial, sans-serif;
-    transform: rotate(90deg);
-    transform-origin: top left;
-
-    position: absolute;
-    top: 0;
-    left: 100vw;
-    color: var(--cinza);
   }
 
   body {
+    width: 100vw; height: 100vh;
+    margin: 0; padding: 0;
+    overflow: hidden;
+    background: var(--preto-deep);
+    font-family: 'Comme', 'Helvetica Neue', Arial, sans-serif;
+    color: var(--cinza);
+    position: relative;
+  }
+
+  /* Wrapper que rotaciona o conteúdo 90° no sentido anti-horário.
+     A TV está fisicamente na vertical, mas o sinal renderiza em landscape (1920x1080).
+     Rotacionando o conteúdo -90°, ele aparece na orientação correta na tela vertical.
+     Se a imagem ficar de cabeça para baixo, troque rotate(-90deg) por rotate(90deg). */
+  #rotator {
+    width: 1080px; height: 1920px;
     display: flex;
     flex-direction: column;
-    position: relative;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform-origin: center center;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    background: var(--preto-deep);
   }
 
   .bg-pattern {
@@ -268,6 +277,7 @@
 </style>
 </head>
 <body>
+<div id="rotator">
 
 <div class="bg-pattern"></div>
 <div class="deco-left"></div>
@@ -398,23 +408,83 @@ setInterval(function() {
 }, 6000);
 
 // ========= WEATHER =========
-function wx() {
-  fetch("https://api.open-meteo.com/v1/forecast?latitude=-19.92&longitude=-43.94&current=temperature_2m,weather_code&timezone=America/Sao_Paulo")
-  .then(function(r){return r.json()})
-  .then(function(d){
-    var t = Math.round(d.current.temperature_2m);
-    var c = d.current.weather_code;
-    document.getElementById("wt").textContent = t+"°C";
-    var m={0:["☀️","Céu limpo"],1:["🌤️","Parcialmente nublado"],2:["⛅","Nublado"],3:["☁️","Encoberto"],45:["🌫️","Neblina"],48:["🌫️","Neblina"],51:["🌦️","Garoa leve"],53:["🌦️","Garoa"],55:["🌧️","Garoa intensa"],61:["🌧️","Chuva leve"],63:["🌧️","Chuva moderada"],65:["🌧️","Chuva forte"],80:["🌦️","Pancadas"],81:["⛈️","Pancadas moderadas"],82:["⛈️","Pancadas fortes"],95:["⛈️","Tempestade"],96:["⛈️","Granizo"]};
-    var w=m[c]||["🌤️","Parcialmente nublado"];
-    document.getElementById("wi").textContent=w[0];
-    document.getElementById("wdesc").textContent=w[1];
-  }).catch(function(){
-    document.getElementById("wt").textContent="--°C";
-    document.getElementById("wdesc").textContent="Indisponível";
+var WX_MAP = {0:["☀️","Céu limpo"],1:["🌤️","Poucas nuvens"],2:["⛅","Parcialmente nublado"],3:["☁️","Nublado"],45:["🌫️","Neblina"],48:["🌫️","Neblina"],51:["🌦️","Garoa leve"],53:["🌦️","Garoa"],55:["🌧️","Garoa intensa"],56:["🌧️","Garoa congelante"],57:["🌧️","Garoa congelante"],61:["🌧️","Chuva leve"],63:["🌧️","Chuva moderada"],65:["🌧️","Chuva forte"],66:["🌧️","Chuva congelante"],67:["🌧️","Chuva congelante"],71:["🌨️","Neve leve"],73:["🌨️","Neve"],75:["🌨️","Neve forte"],77:["🌨️","Granizo"],80:["🌦️","Pancadas"],81:["⛈️","Pancadas moderadas"],82:["⛈️","Pancadas fortes"],85:["🌨️","Pancadas de neve"],86:["🌨️","Pancadas de neve"],95:["⛈️","Tempestade"],96:["⛈️","Tempestade c/ granizo"],99:["⛈️","Tempestade forte"]};
+
+function wxFromBMF(description){
+  var d=(description||"").toLowerCase();
+  if(d.indexOf("tempest")>=0||d.indexOf("trovoada")>=0) return ["⛈️","Tempestade"];
+  if(d.indexOf("pancad")>=0) return ["⛈️","Pancadas de chuva"];
+  if(d.indexOf("chuva forte")>=0) return ["🌧️","Chuva forte"];
+  if(d.indexOf("chuva")>=0) return ["🌧️","Chuva"];
+  if(d.indexOf("garoa")>=0||d.indexOf("chuvisco")>=0) return ["🌦️","Garoa"];
+  if(d.indexOf("nublado")>=0&&d.indexOf("parcial")>=0) return ["⛅","Parcialmente nublado"];
+  if(d.indexOf("nublado")>=0) return ["☁️","Nublado"];
+  if(d.indexOf("poucas nuvens")>=0||d.indexOf("algumas nuvens")>=0) return ["🌤️","Poucas nuvens"];
+  if(d.indexOf("nevoeiro")>=0||d.indexOf("neblina")>=0) return ["🌫️","Neblina"];
+  if(d.indexOf("limpo")>=0||d.indexOf("sol")>=0||d.indexOf("claro")>=0) return ["☀️","Céu limpo"];
+  return null;
+}
+
+function wxSet(t,icon,desc){
+  if(t!=null) document.getElementById("wt").textContent = Math.round(t)+"°C";
+  if(icon) document.getElementById("wi").textContent = icon;
+  if(desc) document.getElementById("wdesc").textContent = desc;
+}
+
+function wxFetchWithTimeout(url, ms){
+  return new Promise(function(resolve,reject){
+    var done=false;
+    var to=setTimeout(function(){ if(!done){done=true; reject(new Error("timeout"));} }, ms||8000);
+    fetch(url,{cache:"no-store"}).then(function(r){
+      if(done) return;
+      clearTimeout(to); done=true;
+      if(!r.ok){ reject(new Error("http "+r.status)); return; }
+      resolve(r.json());
+    }).catch(function(e){ if(!done){done=true; clearTimeout(to); reject(e);} });
   });
 }
-wx(); setInterval(wx, 600000);
+
+function wxOpenMeteo(){
+  return wxFetchWithTimeout("https://api.open-meteo.com/v1/forecast?latitude=-19.92&longitude=-43.94&current=temperature_2m,weather_code&timezone=America%2FSao_Paulo", 8000)
+  .then(function(d){
+    if(!d||!d.current) throw new Error("no data");
+    var t=d.current.temperature_2m, c=d.current.weather_code;
+    var w=WX_MAP[c]||["🌤️","Parcialmente nublado"];
+    wxSet(t, w[0], w[1]);
+    return true;
+  });
+}
+
+function wxWttr(){
+  // wttr.in tem CORS aberto e retorna JSON
+  return wxFetchWithTimeout("https://wttr.in/Belo+Horizonte?format=j1", 8000)
+  .then(function(d){
+    if(!d||!d.current_condition||!d.current_condition[0]) throw new Error("no data");
+    var cc=d.current_condition[0];
+    var t=parseFloat(cc.temp_C);
+    var desc=(cc.lang_pt&&cc.lang_pt[0]&&cc.lang_pt[0].value)||cc.weatherDesc[0].value;
+    var mapped=wxFromBMF(desc)||["🌤️",desc];
+    wxSet(t, mapped[0], mapped[1]);
+    return true;
+  });
+}
+
+function wx(){
+  wxOpenMeteo().catch(function(){
+    return wxWttr();
+  }).catch(function(){
+    // última tentativa — retry rápido do Open-Meteo após 15s
+    setTimeout(function(){
+      wxOpenMeteo().catch(function(){
+        wxSet(null,"🌤️","Aguardando conexão...");
+      });
+    }, 15000);
+    wxSet(null,"🌤️","Aguardando conexão...");
+  });
+}
+wxSet(null,"🌤️","Carregando...");
+wx();
+setInterval(wx, 600000);
 
 // ========= NEWS LIVE FEED =========
 function nf() {
@@ -434,5 +504,6 @@ nf(); setInterval(nf, 900000);
 // ========= AUTO REFRESH =========
 setTimeout(function(){location.reload()}, 6*60*60*1000);
 </script>
+</div>
 </body>
 </html>
