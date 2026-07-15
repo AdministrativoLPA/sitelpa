@@ -72,7 +72,7 @@
             <i class="fas fa-bars" onclick="showMenu()"></i>
 
             <div class="header-icons">
-                <a href="mailto:contato@lpaadv.com" title="Enviar E-mail">
+                <a href="mailto:contato@lpaadv.com" title="Enviar E-mail" onclick="fbq('track', 'Contact');">
                     <i class="fas fa-envelope"></i>
                 </a>
 
@@ -104,19 +104,19 @@
                 </iframe>
 
                 <!-- CARD SOBREPOSTO -->
-                <div class="contato-card">
-                    <i class="fas fa-home"></i>
-                    <h3>Nosso Escritório</h3>
-                    <p>
-                        Rua Jaceguai, 208<br>
-                        12° andar, sala 1204<br>
-                        Bairro Prado – BH | MG
-                    </p>
+            <div class="contato-card">
+                <i class="fas fa-home"></i>
+                <h3>Nosso Escritório</h3>
+                <p>
+                    Rua Jaceguai, 208<br>
+                    12° andar, sala 1204<br>
+                    Bairro Prado – BH | MG
+                </p>
 
-                    <span>(31) 3657-5600</span>
-                    <span>(31) 98338-7753</span>
-                    <span>contato@lpaadv.com</span>
-                </div>
+                <span><a href="tel:+553136575600" onclick="fbq('track', 'Contact');" style="color: inherit; text-decoration: none;">(31) 3657-5600</a></span>
+                <span><a href="https://api.whatsapp.com/send/?phone=5531983387753" target="_blank" onclick="fbq('track', 'Contact');" style="color: inherit; text-decoration: none;">(31) 98338-7753</a></span>
+                <span><a href="mailto:contato@lpaadv.com" onclick="fbq('track', 'Contact');" style="color: inherit; text-decoration: none;">contato@lpaadv.com</a></span>
+            </div>
 
             </div>
 
@@ -139,7 +139,7 @@
                 </div>
 
                 <div class="contato-form">
-                    <form action="https://api.web3forms.com/submit" method="POST">
+                    <form action="https://api.web3forms.com/submit" method="POST" onsubmit="fbq('track', 'Lead');">
 
                         <input type="hidden" name="access_key" value="d315b0be-d309-42b2-a860-bf933bfb7f2e">
 
@@ -174,7 +174,7 @@
             <div class="footer-col branding">
                 <img src="./static/Imagens/logoLPA.png" class="footer-logo" alt="LPA Advocacia">
                 <div class="footer-icons">
-                    <a href="mailto:contato@lpaadv.com" title="E-mail"><i class="fas fa-envelope"></i></a>
+                    <a href="mailto:contato@lpaadv.com" title="E-mail" onclick="fbq('track', 'Contact');"><i class="fas fa-envelope"></i></a>
                     <a href="https://instagram.com" target="_blank" title="Instagram"><i
                             class="fab fa-instagram"></i></a>
                     <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>

@@ -60,7 +60,7 @@
             <i class="fas fa-bars" onclick="showMenu()"></i>
 
             <div class="header-icons">
-                <a href="mailto:contato@lpaadv.com" title="Enviar E-mail">
+                <a href="mailto:contato@lpaadv.com" title="Enviar E-mail" onclick="fbq('track', 'Contact');">
                     <i class="fas fa-envelope"></i>
                 </a>
 
@@ -199,11 +199,12 @@
 
         </div>
         <div style="display: flex; justify-content: center; width: 100%; margin-top: 40px;">
-            <a href="https://api.whatsapp.com/send/?phone=5531983387753&text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20com%20os%20especialistas%20do%20LPA."
-                target="_blank" class="hero-btn red-btn"
-                style="display: inline-block; text-align: center; font-size: 200%;">
-                Vamos conversar
-            </a>
+        <a href="https://api.whatsapp.com/send/?phone=5531983387753&text=Olá,%20gostaria%20de%20agendar%20uma%20consulta%20com%20os%20especialistas%20do%20LPA."
+            target="_blank" class="hero-btn red-btn"
+            style="display: inline-block; text-align: center; font-size: 200%;"
+            onclick="fbq('track', 'Contact');">
+            Vamos conversar
+        </a>
         </div>
 
     </section>
@@ -214,7 +215,7 @@
             <div class="footer-col branding">
                 <img src="./static/Imagens/logoLPA.png" class="footer-logo" alt="LPA Advocacia">
                 <div class="footer-icons">
-                    <a href="mailto:contato@lpaadv.com" title="E-mail"><i class="fas fa-envelope"></i></a>
+                    <a href="mailto:contato@lpaadv.com" title="E-mail" onclick="fbq('track', 'Contact');"><i class="fas fa-envelope"></i></a>
                     <a href="https://instagram.com" target="_blank" title="Instagram"><i
                             class="fab fa-instagram"></i></a>
                     <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
